@@ -2,7 +2,6 @@ package com.example.dependencyinjectionspike.di.module;
 
 import android.content.Context;
 
-import com.example.dependencyinjectionspike.service.AnalyticsService;
 import com.example.dependencyinjectionspike.service.StorageService;
 import com.example.dependencyinjectionspike.service.StorageServiceImpl;
 
@@ -11,6 +10,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 
 @Module
@@ -19,13 +19,7 @@ public class ServiceModule {
 
     @Provides
     @Singleton
-    public StorageService storageService() {
-        return new StorageServiceImpl();
-    }
-
-    @Provides
-    @Singleton
-    public static AnalyticsService analyticsService(Context appContext, StorageService storageService) {
-        return new AnalyticsService(appContext, storageService);
+    public StorageService storageService(@ApplicationContext Context appContext) {
+        return new StorageServiceImpl(appContext);
     }
 }

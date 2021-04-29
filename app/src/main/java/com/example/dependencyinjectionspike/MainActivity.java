@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         textView = this.findViewById(R.id.greeting);
         textView.setText("Analytics service status: " + analytics.getStatus());
     }
